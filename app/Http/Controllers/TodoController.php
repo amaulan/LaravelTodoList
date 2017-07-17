@@ -69,8 +69,13 @@ class TodoController extends Controller
        $id = $_POST['id'];
        $created = $_POST['created_at'];
        $todo = $_POST['todo'];
-       DB::update("UPDATE todo set todo = '$todo',created_at = '$created' where id = $id");
-        return redirect('/');
+       DB::table('todo')->where('id',$id)->update([
+            'todo' => $todo,
+            'created_at' => $created,
+            'updated_at' => date('Y-m-d H:i:s')
+       ]);
+        // DB::update("UPDATE todo set todo='$todo',created_at='$created',updated_at=date('yyyy-mm') where id = $id");
+         return redirect('/');
     }
 
     /**
