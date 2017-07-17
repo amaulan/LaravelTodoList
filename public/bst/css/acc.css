@@ -1,0 +1,136 @@
+@font-face {
+         font-family: "libro";
+         src: url('../fonts/Libro.ttf');
+}.container-custom{
+  box-shadow: 0px 0px 10px 1px #000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}.side-right-head{
+  background-color:#106B60;
+  padding: 10px;
+  color:  #E67E22;
+  text-align: center;;
+  line-height: 30px;
+  font-size: 18px;
+  font-family: "libro";
+  margin-top: 5px;
+}.side-right-body{
+  background-color:#fff;
+  border: 1px solid #106B60;
+  border-top: 0px;
+  padding: 5px;
+  color:  #000;
+  text-align: center;;
+  line-height: 25px;
+  font-size: 15px;
+  font-family: arial;
+  font-weight: bolder;
+}.side-right-body>a{
+	color: #000;
+}.footer{
+	text-align: center;
+	color: #fff;
+	font-family: "libro";
+	background-color:#106B60;
+	margin-top: 10px;
+	bottom: 0px;
+	font-size: 15px;
+	padding: 5px;
+}.header-content{
+	background-color: #106B60;
+	padding: 5px;
+	color: #E67E22;
+	font-size: 15px;
+	text-align: center;
+	margin-top: 5px;
+}.body-content{
+	border: 1px solid #106B60;
+	font-size: 
+}.footer-content{
+	background-color:#106B60;
+	border: 1px solid #106B60;
+	text-align: center;
+}.btn-content{
+	background-color:#106B60;
+	border: 1px solid #106B60;
+	color: #fff;
+	padding: 5px;
+	width: 100%;
+}.btn-content:hover{
+	background-color:#106B60;
+	border: 1px solid #106B60;
+	color: #E67E22;
+	padding: 5px;
+	width: 100%;
+}.caption-custom{
+	border-left: 4px solid #106B60;
+	margin: 5px;
+	margin-left: 0px;
+	font-weight: bolder;
+	font-size: 14px;
+}.table-detail-custom{
+	border: 1px solid #106B60;
+}.info-head{
+	font-weight: bolder;
+	font-size: 20px;
+	color: #000;
+	border-bottom: 1px double #106B60;
+	max-height: 40px;
+	padding: 10px;
+	padding-left: 0px;
+}.info-body{
+	font-size: 15px;
+	color: #000;
+	border-bottom: 1px double #106B60;
+	height: 110px;
+	padding: 10px;
+	padding-left: 0px;
+}
+@media (max-width: 400px){
+	.info-body{
+	font-size: 15px;
+	color: #000;
+	border-bottom: 1px double #106B60;
+	height: auto;
+	padding: 10px;
+	padding-left: 0px;
+}
+}.komentar-block{
+	border: 1px solid #106B60;
+	padding: 5px;
+	margin-bottom: 5px;
+}.komentar-block-tittle{
+	border-bottom: 1px solid #106B60;
+	font-weight: bolder;
+	padding: 3px;
+}.komentar-block-body{
+	padding: 3px;
+}.modal-login-font{
+	font-family: "Libro";
+	color: #E67E22;
+}.kotak-alert{
+	min-height: 450px;
+	top: 100px;
+	background-color: #106B60;
+	border-radius: 10px;
+	padding: 0px;
+	color: #fff;
+	font-size: 17px;
+}.kotak-alert-head{
+	color: #E67E22;
+	min-height: 50px;
+	text-align: center;
+	font-family: "Libro";
+	font-size: 20px;
+	padding: 10px;
+	border-bottom: 1px solid #fff;
+}.kotak-alert-body{
+	padding: 10px;
+	min-height: 300px;
+	text-align: center;
+}.table-alert{
+	height: 350px;
+}.kotak-alert-footer{
+	padding: 10px;
+}
