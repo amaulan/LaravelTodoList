@@ -64,9 +64,13 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+       $id = $_POST['id'];
+       $created = $_POST['created_at'];
+       $todo = $_POST['todo'];
+       DB::update("UPDATE todo set todo = '$todo',created_at = '$created' where id = $id");
+        return redirect('/');
     }
 
     /**

@@ -40,11 +40,32 @@
 							<input type="hidden" name="created" value="{{$todo->crrated_at}}">
 
 						</form>
-						<form action="">
-							<input type="submit" name="update" value="UPDATE" class="btn btn-info">
-							<input type="hidden" name="id" value="{{$todo->id}}">
-							<input type="hidden" name="created" value="{{$todo->crrated_at}}">
-						</form>
+						<button data-toggle="modal" data-target="#update" class="btn btn-info">UPDATE</button>
+							<div class="modal fade" id="update" role="dialog" style="margin-top:150px;">
+							    <div class="modal-dialog">
+							    
+							      <!-- Modal content-->
+							      <div class="modal-content">
+							        <div class="modal-header" style="background-color:#106B60;">
+							          <button type="button" class="close" data-dismiss="modal">&times;</button>
+							          <h4 class="modal-title modal-login-font">LOG - IN</h4>
+							        </div>
+							        <div class="modal-body" style="background-color:#fff;text-align:center;">
+							          <form action="edit" method="POST">
+							          	TO DO : <input type="text" name="todo" class="form-control">
+							          	<input type="hidden" name="id" value="{{$todo->id}}">
+							          	<input type="hidden" name="created_at" value="{{$todo->created_at}}">
+							        </div>
+							        <div class="modal-footer" style="background-color:#106B60;text-align:center;">
+							          <input type="submit" name="update" class="btn btn-success" value="OK">
+							          <input type="reset" class="btn btn-success" value="BATAL">
+							          <button type="button" class="btn btn-success" data-dismiss="modal">TUTUP</button>
+							          </form>
+							        </div>
+							      </div>
+							      
+							    </div>
+						  	</div>
 					</td>
 				</tr>
 				@endforeach
