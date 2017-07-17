@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'TodoController@index');
+Route::post('/', 'TodoController@index');
+

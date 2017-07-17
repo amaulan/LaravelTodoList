@@ -16,8 +16,15 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todo = Todo::all();
-        return view('home', compact('todo'));
+        if (isset($_POST['save'])) {
+            $todo = $_POST['todo'];
+           DB::table('todo')->insert(['todo'=>$todo]);
+           $todo = Todo::all();
+            return view('home', compact('todo'));
+        }else{
+            $todo = Todo::all();
+            return view('home', compact('todo'));
+        }
     }
 
     /**
