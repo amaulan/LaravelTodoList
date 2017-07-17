@@ -12,5 +12,7 @@
 */
 
 Route::get('/', 'TodoController@index');
-Route::post('/', 'TodoController@index');
+Route::post('/create', 'TodoController@create');
+Route::get('/destroy', 'TodoController@destroy');
+
 

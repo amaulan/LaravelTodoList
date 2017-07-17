@@ -12,9 +12,10 @@
 <body>
 	<div class="col-md-12">
 		<div class="col-md-6 col-md-offset-3">
-			<form action="" method="POST" style="text-align:center;margin-top:50px;margin-bottom:50px;">
+			<form action="create" method="POST" style="text-align:center;margin-top:50px;margin-bottom:50px;">
 				To Do<input type="text" name="todo" class="form-control">
 				<input type="submit" name="save" value="SAVE" class="form-control">
+				<input type="reset" name="reset" value="RESET" class="form-control">
 			</form>
 		</div>
 		<div class="col-md-12" align="center">
@@ -33,8 +34,17 @@
 					<td>{{$todo->created_at}}</td>
 					<td>{{$todo->updated_at}}</td>
 					<td>
-						<div class="btn btn-danger">DELETE</div>
-						<div class="btn btn-success">UPDATE</div>
+						<form action="destroy" method="GET">
+							<input type="submit" name="delete" value="DELETE" class="btn btn-danger">
+							<input type="hidden" name="id" value="{{$todo->id}}">
+							<input type="hidden" name="created" value="{{$todo->crrated_at}}">
+
+						</form>
+						<form action="">
+							<input type="submit" name="update" value="UPDATE" class="btn btn-info">
+							<input type="hidden" name="id" value="{{$todo->id}}">
+							<input type="hidden" name="created" value="{{$todo->crrated_at}}">
+						</form>
 					</td>
 				</tr>
 				@endforeach

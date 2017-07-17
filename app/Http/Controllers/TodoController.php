@@ -17,10 +17,7 @@ class TodoController extends Controller
     public function index()
     {
         if (isset($_POST['save'])) {
-            $todo = $_POST['todo'];
-           DB::table('todo')->insert(['todo'=>$todo]);
-           $todo = Todo::all();
-            return view('home', compact('todo'));
+
         }else{
             $todo = Todo::all();
             return view('home', compact('todo'));
@@ -34,7 +31,9 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+            $todo = $_POST['todo'];
+            DB::table('todo')->insert(['todo'=>$todo]);
+            return redirect('/');
     }
 
     /**
@@ -88,8 +87,10 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $nomor = $_GET['id'];
+        Todo::destroy($nomor);
+        return redirect('/');
     }
 }
