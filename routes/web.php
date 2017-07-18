@@ -17,3 +17,5 @@ Route::get('/destroy', 'TodoController@destroy');
 Route::post('/edit', 'TodoController@edit');
 
 
+
+Route::post('/test', 'TodoController@test');

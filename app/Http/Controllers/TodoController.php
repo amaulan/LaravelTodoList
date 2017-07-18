@@ -102,4 +102,10 @@ class TodoController extends Controller
         Todo::destroy($nomor);
         return redirect('/');
     }
+
+    public function test(Request $request)
+   {
+        dd($request->nama);
+    }
+
 }
