@@ -13,13 +13,25 @@
 <body>
 	<div class="col-md-12">
 		<div class="col-md-6 col-md-offset-3">
-			<form action="create" method="POST" style="text-align:center;margin-top:50px;margin-bottom:50px;">
+			<form action="store" method="POST" style="text-align:center;margin-top:50px;margin-bottom:50px;">
 			{{ csrf_field() }}
 				To Do<input type="text" name="todo" class="form-control">
 				<input type="submit" name="save" value="SAVE" class="form-control btn btn-danger">
 				<input type="reset" name="reset" value="RESET" class="form-control btn btn-info">
 			</form>
-			<?php echo date('Y-m-d H:i:s'); ?>
+			@if (session()->has('add'))
+			    <div class="alert alert-success">
+			        {{ Session::get('add') }}
+			    </div>
+			@elseif (session()->has('update'))
+			    <div class="alert alert-success">
+			        {{ Session::get('update') }}
+			    </div>
+			@elseif (session()->has('destroy'))
+			    <div class="alert alert-success">
+			        {{ Session::get('destroy') }}
+			    </div>
+			@endif
 		</div>
 		<div class="col-md-12" align="center">
 			<table class="table table-hover">
@@ -55,10 +67,9 @@
 							          <h4 class="modal-title modal-login-font">LOG - IN</h4>
 							        </div>
 							        <div class="modal-body" style="background-color:#fff;text-align:center;">
-							          <form action="edit" method="POST">
+							          <form action="update/{{$todo->id}}" method="POST">
 							          {{ csrf_field() }}
 							          	TO DO : <input type="text" name="todo" class="form-control">
-							          	<input type="hidden" name="id" value="{{$todo->id}}">
 							          	<input type="hidden" name="created_at" value="{{$todo->created_at}}">
 							        </div>
 							        <div class="modal-footer" style="background-color:#106B60;text-align:center;">

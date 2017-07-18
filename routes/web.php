@@ -12,9 +12,9 @@
 */
 
 Route::get('/', 'TodoController@index');
-Route::post('/create', 'TodoController@create');
+Route::post('/store', 'TodoController@store');
 Route::get('/destroy', 'TodoController@destroy');
-Route::post('/edit', 'TodoController@edit');
+Route::post('/update/{id}', 'TodoController@update');
 
 
 

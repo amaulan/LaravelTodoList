@@ -16,12 +16,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        if (isset($_POST['save'])) {
-
-        }else{
+        
             $todo = Todo::all();
             return view('home', compact('todo'));
-        }
     }
 
     /**
@@ -31,9 +28,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-            $todo = $_POST['todo'];
-            DB::table('todo')->insert(['todo'=>$todo]);
-            return redirect('/');
+            
     }
 
     /**
@@ -44,7 +39,10 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = $request->todo;
+            DB::table('todo')->insert(['todo'=>$todo]);
+            \Session::flash('add','Data successfully added.');
+            return redirect('/');
     }
 
     /**
@@ -66,16 +64,7 @@ class TodoController extends Controller
      */
     public function edit()
     {
-       $id = $_POST['id'];
-       $created = $_POST['created_at'];
-       $todo = $_POST['todo'];
-       DB::table('todo')->where('id',$id)->update([
-            'todo' => $todo,
-            'created_at' => $created,
-            'updated_at' => date('Y-m-d H:i:s')
-       ]);
-        // DB::update("UPDATE todo set todo='$todo',created_at='$created',updated_at=date('yyyy-mm') where id = $id");
-         return redirect('/');
+       
     }
 
     /**
@@ -87,7 +76,17 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id = $request->id;
+       $created = $request->created_at;
+       $todo = $request->todo;
+       DB::table('todo')->where('id',$id)->update([
+            'todo' => $todo,
+            'created_at' => $created,
+            'updated_at' => date('Y-m-d H:i:s')
+       ]);
+        // DB::update("UPDATE todo set todo='$todo',created_at='$created',updated_at=date('yyyy-mm') where id = $id");
+        \Session::flash('update','Data successfully updated.');
+         return redirect('/');
     }
 
     /**
@@ -96,10 +95,11 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Request $request)
     {
-        $nomor = $_GET['id'];
+        $nomor = $request->id;
         Todo::destroy($nomor);
+        \Session::flash('destroy','Data successfully deleted.');
         return redirect('/');
     }
 
