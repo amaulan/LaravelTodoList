@@ -17,7 +17,7 @@ class TodoController extends Controller
     public function index()
     {
         
-            $todo = Todo::all();
+            $todo = Todo::orderBy('id','desc')->get();
             return view('home', compact('todo'));
     }
 
@@ -40,9 +40,14 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $todo = $request->todo;
-            DB::table('todo')->insert(['todo'=>$todo]);
-            \Session::flash('add','Data successfully added.');
+        if ($todo == "") {
+            \Session::flash('notadd','Data has not successfully added.');
             return redirect('/');
+        }else{
+            DB::table('todo')->insert(['todo'=>$todo]);
+            \Session::flash('add','Data has successfully added.');
+            return redirect('/');
+        }
     }
 
     /**
@@ -79,7 +84,11 @@ class TodoController extends Controller
         $id = $request->id;
        $created = $request->created_at;
        $todo = $request->todo;
-       DB::table('todo')->where('id',$id)->update([
+       if ($todo == "") {
+           \Session::flash('notupdate','Data has not successfully updated.');
+         return redirect('/');
+       }else{
+        DB::table('todo')->where('id',$id)->update([
             'todo' => $todo,
             'created_at' => $created,
             'updated_at' => date('Y-m-d H:i:s')
@@ -87,6 +96,7 @@ class TodoController extends Controller
         // DB::update("UPDATE todo set todo='$todo',created_at='$created',updated_at=date('yyyy-mm') where id = $id");
         \Session::flash('update','Data successfully updated.');
          return redirect('/');
+       }
     }
 
     /**
