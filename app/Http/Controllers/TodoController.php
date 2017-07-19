@@ -18,7 +18,8 @@ class TodoController extends Controller
     {
         
             $todo = Todo::orderBy('id','desc')->get();
-            return view('home', compact('todo'));
+            $row = $todo->count();
+            return view('home', compact('todo','row'));
     }
 
     /**
@@ -40,7 +41,7 @@ class TodoController extends Controller
     public function store(Request $request)
     {  
            $validator = Validator::make($request->all(), [
-            'todo' => 'required|string|max:10',
+            'todo' => 'required|string|unique:todo|max:50|min:3',
         ]);
 
         if ($validator->fails()) {
