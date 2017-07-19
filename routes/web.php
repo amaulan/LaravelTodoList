@@ -18,4 +18,5 @@ Route::post('/update/{id}', 'TodoController@update');
 
 
 
-Route::post('/test', 'TodoController@test');
+Route::get('/test', 'TodoController@test');
+Route::get('/register', 'TodoController@register');
