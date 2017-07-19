@@ -41,7 +41,7 @@ class TodoController extends Controller
     public function store(Request $request)
     {  
            $validator = Validator::make($request->all(), [
-            'todo' => 'required|string|max:10',
+            'todo' => 'required|string|max:50',
         ]);
 
         if ($validator->fails()) {
