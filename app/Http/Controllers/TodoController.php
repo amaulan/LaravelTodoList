@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Todo;
 use DB;
-
+use Validator;
 
 class TodoController extends Controller
 {
@@ -17,8 +17,9 @@ class TodoController extends Controller
     public function index()
     {
         
-            $todo = Todo::all();
-            return view('home', compact('todo'));
+            $todo = Todo::orderBy('id','desc')->get();
+            $row = $todo->count();
+            return view('home', compact('todo','row'));
     }
 
     /**
@@ -38,10 +39,19 @@ class TodoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $todo = $request->todo;
-            DB::table('todo')->insert(['todo'=>$todo]);
-            \Session::flash('add','Data successfully added.');
+    {  
+           $validator = Validator::make($request->all(), [
+            'todo' => 'required|string|unique:todo|max:50|min:3',
+        ]);
+
+        if ($validator->fails()) {
+            \Session::flash('notadd','Data has not successfully added.');
+            return redirect('/')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+           Todo::create($request->all());
+            \Session::flash('add','Data has successfully added.');
             return redirect('/');
     }
 
@@ -77,16 +87,25 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $id = $request->id;
-       $created = $request->created_at;
-       $todo = $request->todo;
-       DB::table('todo')->where('id',$id)->update([
-            'todo' => $todo,
-            'created_at' => $created,
-            'updated_at' => date('Y-m-d H:i:s')
-       ]);
+        $created = $request->created_at;
+        $todo = $request->todo;
+
+       $validator = Validator::make($request->all(), [
+            'todo' => 'required|string|min:3|max:10',
+        ]);
+
+        if ($validator->fails()) {
+            \Session::flash('notupdate','Data has not successfully added.');
+            return redirect('/')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        Todo::find($id)->update($request->all());
         // DB::update("UPDATE todo set todo='$todo',created_at='$created',updated_at=date('yyyy-mm') where id = $id");
         \Session::flash('update','Data successfully updated.');
          return redirect('/');
+       
     }
 
     /**

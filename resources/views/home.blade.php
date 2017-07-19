@@ -23,17 +23,40 @@
 			    <div class="alert alert-success">
 			        {{ Session::get('add') }}
 			    </div>
+			@elseif (session()->has('notadd'))
+			    <div class="alert alert-danger">
+			        {{ Session::get('notadd') }}
+			    </div>
 			@elseif (session()->has('update'))
 			    <div class="alert alert-success">
 			        {{ Session::get('update') }}
 			    </div>
+			@elseif (session()->has('notupdate'))
+			    <div class="alert alert-danger">
+			        {{ Session::get('notupdate') }}
+			    </div>
 			@elseif (session()->has('destroy'))
-			    <div class="alert alert-success">
+			    <div class="alert alert-danger">
 			        {{ Session::get('destroy') }}
+			    </div>
+			@endif
+
+			@if ($errors->any())
+			    <div class="alert alert-danger">
+			        <ul>
+			            @foreach ($errors->all() as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
 			    </div>
 			@endif
 		</div>
 		<div class="col-md-12" align="center">
+		@if($row == 0)
+		<div align="center" style="font-size:25px;">
+			There Is No Data
+		</div>
+		@else
 			<table class="table table-hover">
 				<tr class="tebel">
 					<td>ID</td>
@@ -51,13 +74,14 @@
 					<td>
 						<form action="destroy" method="GET">
 
-							<input type="submit" name="delete" value="DELETE" class="btn btn-danger">
+							<input type="submit" name="delete" value="DELETE" class="btn btn-danger" onclick="return confirm('Are You Sure ? ')">
 							<input type="hidden" name="id" value="{{$todo->id}}">
 							<input type="hidden" name="created" value="{{$todo->crrated_at}}">
 
 						</form>
-						<button data-toggle="modal" data-target="#update" class="btn btn-info">UPDATE</button>
-							<div class="modal fade" id="update" role="dialog" style="margin-top:150px;">
+
+						<button data-toggle="modal" data-target="#update-{{$todo->id}}" class="btn btn-info">UPDATE</button>
+							<div class="modal fade" id="update-{{$todo->id}}" role="dialog" style="margin-top:150px;">
 							    <div class="modal-dialog">
 							    
 							      <!-- Modal content-->
@@ -69,7 +93,7 @@
 							        <div class="modal-body" style="background-color:#fff;text-align:center;">
 							          <form action="update/{{$todo->id}}" method="POST">
 							          {{ csrf_field() }}
-							          	TO DO : <input type="text" name="todo" class="form-control">
+							          	TO DO : <input type="text" name="todo" class="form-control" value="{{$todo->todo}}">
 							          	<input type="hidden" name="created_at" value="{{$todo->created_at}}">
 							        </div>
 							        <div class="modal-footer" style="background-color:#106B60;text-align:center;">
@@ -86,6 +110,7 @@
 				</tr>
 				@endforeach
 			</table>
+			@endif
 		</div>
 	</div>
 </body>
