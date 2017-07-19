@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodoTable extends Migration
+class CreateTableUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateTodoTable extends Migration
      */
     public function up()
     {
-        Schema::create('todo', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')
-            ->references('id')->on('user')
-            ->onDelete('cascade');
-            $table->string('todo');
-            $table->timestamps();
+            $table->string('nama_user',100);
+            $table->string('password',20);
+            $table->text('alamat');
+
         });
     }
 
@@ -31,6 +29,6 @@ class CreateTodoTable extends Migration
      */
     public function down()
     {
-     
+        //
     }
 }

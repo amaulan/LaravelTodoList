@@ -19,3 +19,10 @@ Route::post('/update/{id}', 'TodoController@update');
 
 
 Route::post('/test', 'TodoController@test');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
