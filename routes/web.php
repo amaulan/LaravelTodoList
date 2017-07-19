@@ -18,5 +18,13 @@ Route::post('/update/{id}', 'TodoController@update');
 
 
 
-Route::get('/test', 'TodoController@test');
 Route::get('/register', 'TodoController@register');
+
+Route::post('/test', 'TodoController@test');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
