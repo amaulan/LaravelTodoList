@@ -18,7 +18,8 @@ class TodoController extends Controller
     {
         
             $todo = Todo::orderBy('id','desc')->get();
-            return view('home', compact('todo'));
+            $row = $todo->count();
+            return view('home', compact('todo','row'));
     }
 
     /**

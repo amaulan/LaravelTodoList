@@ -52,6 +52,11 @@
 			@endif
 		</div>
 		<div class="col-md-12" align="center">
+		@if($row == 0)
+		<div align="center" style="font-size:25px;">
+			There Is No Data
+		</div>
+		@else
 			<table class="table table-hover">
 				<tr class="tebel">
 					<td>ID</td>
@@ -105,6 +110,7 @@
 				</tr>
 				@endforeach
 			</table>
+			@endif
 		</div>
 	</div>
 </body>
