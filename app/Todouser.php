@@ -9,7 +9,7 @@ class Todouser extends Model
    protected $table = 'user';
    protected $fillable = [
 
-   'nama_user','password',
+   'nama_user','password','alamat',
 
    ];
 }

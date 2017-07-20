@@ -14,45 +14,59 @@
 	<div class="col-md-12">
 		<div class="col-md-6 col-md-offset-3">
 			<form action="store" method="POST" style="text-align:center;margin-top:50px;margin-bottom:50px;">
-			{{ csrf_field() }}
+			{{ csrf_field() }}<!-- //->Membuat Method POST bisa melalui router -->
+			<div class="col-md-12" align="center" style="font-size:20px;">
+				Welcome <span style="font-weight:bolder;">{{Auth::user()->username}}<!-- Menampilkan Username dengan class Auth --></span>
+			</div>
 				To Do<input type="text" name="todo" class="form-control">
+				<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 				<input type="submit" name="save" value="SAVE" class="form-control btn btn-danger">
-				<input type="reset" name="reset" value="RESET" class="form-control btn btn-info">
+				<input type="reset" name="reset" value="RESET" class="form-control btn btn-info ">
 			</form>
-			@if (session()->has('add'))
-			    <div class="alert alert-success">
-			        {{ Session::get('add') }}
+			<form action="logout" method="GET" class="col-md-4 col-md-offset-4">
+				<input type="submit" name="logout" class="btn btn-success form-control" value="LOG-OUT">
+			</form>
+			<div class="col-md-4">
+				
+			</div>
+			@if (session()->has('add'))<!-- Percabangan menampilkan notifikasi jika berhasil tambah data -->
+			    <div class="alert alert-success col-md-12">
+			        {{ Session::get('add') }}<!-- Mengambil nilai Session dengan variable 'add' -->
 			    </div>
-			@elseif (session()->has('notadd'))
-			    <div class="alert alert-danger">
-			        {{ Session::get('notadd') }}
+			@elseif (session()->has('notadd'))<!-- Percabangan menampilkan notifikasi jika gagal tambah data -->
+			    <div class="alert alert-danger col-md-12">
+			        {{ Session::get('notadd') }}<!-- Mengambil nilai Session dengan variable 'notadd' -->
 			    </div>
-			@elseif (session()->has('update'))
-			    <div class="alert alert-success">
-			        {{ Session::get('update') }}
+			@elseif (session()->has('update'))<!-- Percabangan menampilkan notifikasi jika berhasil update data -->
+			    <div class="alert alert-success col-md-12">
+			        {{ Session::get('update') }}<!-- Mengambil nilai Session dengan variable 'update' -->
 			    </div>
-			@elseif (session()->has('notupdate'))
-			    <div class="alert alert-danger">
-			        {{ Session::get('notupdate') }}
+			@elseif (session()->has('notupdate'))<!-- Percabangan menampilkan notifikasi jika gagal update data -->
+			    <div class="alert alert-danger col-md-12">
+			        {{ Session::get('notupdate') }}<!-- Mengambil nilai Session dengan variable 'notupdate' -->
 			    </div>
-			@elseif (session()->has('destroy'))
-			    <div class="alert alert-danger">
-			        {{ Session::get('destroy') }}
+			@elseif (session()->has('destroy'))<!-- Percabangan menampilkan notifikasi jika berhasil hapus data -->
+			    <div class="alert alert-danger col-md-12">
+			        {{ Session::get('destroy') }}<!-- Mengambil nilai Session dengan variable 'destroyS' -->
+			    </div>
+			@elseif (session()->has('login'))<!-- Percabangan menampilkan notifikasi jika berhasil login -->
+			    <div class="alert alert-success col-md-12">
+			        {{ Session::get('login') }}<!-- Mengambil nilai Session dengan variable 'login' -->
 			    </div>
 			@endif
 
-			@if ($errors->any())
+			@if ($errors->any())<!-- Percabngan jika ada inputan yang salah -->
 			    <div class="alert alert-danger">
 			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <li>{{ $error }}</li>
+			            @foreach ($errors->all() as $error)<!-- Menampilkan eror dengan perulangan -->
+			                <li>{{ $error }}</li><!-- Menampilkan bagian eror -->
 			            @endforeach
 			        </ul>
 			    </div>
 			@endif
 		</div>
 		<div class="col-md-12" align="center">
-		@if($row == 0)
+		@if($row == 0)<!-- Percabangan jika tidak ada baris -->
 		<div align="center" style="font-size:25px;">
 			There Is No Data
 		</div>
@@ -65,7 +79,7 @@
 					<td>Updated</td>
 					<td>Action</td>
 				</tr>
-				@foreach($todo as $todo)
+				@foreach($todo as $todo)<!-- Menampilkan data dengan perulangan -->
 				<tr>
 					<td>{{$todo->id}}</td>
 					<td>{{$todo->todo}}</td>
