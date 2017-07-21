@@ -128,6 +128,7 @@ class TodoController extends Controller
     public function logout(Request $request)
     {
        Auth::logout();//->Melakukan proses logout dan menghapus semua Session Auth
+       \Session::flush();
        return redirect('setlogin');//->Mengalihkan ke halaman login
     }
 
@@ -153,7 +154,8 @@ class TodoController extends Controller
                         ->withInput();//->Menampilkan bagian inputan yang salah
         }
             $data = $request->all();//Mengambil semua data dan memasukannya ke dalam variable dengan bentuk array
-            $data['password'] = bcrypt($request->password);//->Mengambil nilai password yang sudah di enkripsy
+            $data['password'] = bcrypt($request->password);
+            $data['remember_token'] = 'Null';//->Mengambil nilai password yang sudah di enkripsy
             User::create($data);//->Membuat akun user
             \Session::flash('addregist','Data has successfully added');//->Memanggil class Session agar dapat menampilan notifikasi
             return redirect('registes');//->Mengalihkan ke halaman register

@@ -18,7 +18,7 @@ class CreateTableUser extends Migration
             $table->string('nama_user',100);
             $table->string('password',20);
             $table->text('alamat');
-
+            $table->timestamps();
         });
     }
 
