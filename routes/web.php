@@ -23,7 +23,10 @@ Route::post('/inregister', 'TodoController@inregister');//->Membuat jalur ke Tod
 Route::get('/logout', 'TodoController@logout');//->Membuat jalur ke TodoController dengan method GET function logout
 Route::get('/latihan', 'TodoController@latihan');
 Route::get('/latihan2', 'TodoController@latihan2');
-Route::get('/send', 'TodoController@send');
+Route::get('/email', 'TodoController@email');
+Route::post('/send', 'TodoController@send');
+
+
 
 
 

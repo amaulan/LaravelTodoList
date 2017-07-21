@@ -11,6 +11,8 @@ use Validator;//->Memanggil class Validator
 use App\User;//->Memanggil class User
 use Session;//->Memanggil class Session
 use Mail;
+use App\mail\sendMail;
+
 class TodoController extends Controller
 {
     /**
@@ -187,10 +189,11 @@ class TodoController extends Controller
     }
     public function send()
     {
-        Mail::send(['text'=>'mail'],['name','Rizki'],function($message){
-            $message->to('shodiqdaffa2302@gmail.com','To Fauzan')->subject('Test Mail Laravel');
-            $message->from('fauzan@gmail.com','Rizki');
-        });
+        Mail::send(new sendMail());
+    }
+    public function email()
+    {
+        return view('email');
     }
 
 }

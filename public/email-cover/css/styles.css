@@ -1,0 +1,153 @@
+@import "../fonts/quicksand/Quicksand.min.css";
+@import "../fonts/pacifico/Pacifico.min.css";
+
+:root{
+	--flat-green: #3edc81;
+	--hover-green: #2ecc71;
+	--logo-shadow: salmon;
+	--grey: #808080;
+	--icon: var(--flat-green);
+}
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background-color: var(--flat-green);
+	font-family: 'Quicksand';
+}
+
+body .cover-header{
+	/*box-shadow: 2px 2px 10px #505050;*/
+	margin: 5% auto -5.5% auto;
+	background-color: #fff;
+	padding-bottom: 1%;
+	width: 50%;
+}
+
+.cover-header .fa{
+		margin-left: 10%;
+		display: block;
+		font-size: 2em;
+		padding: 3.5% 0 1.5% 0;
+}
+body .cover{
+	/*box-shadow: 2px 2px 10px #505050;*/
+	background-color: #fff;
+	border-radius: 2.5px;
+	overflow: hidden;
+	padding: 2.5% 5%;
+	margin: 5% auto;
+	width: 50%;
+}
+.cover .logo{
+	font-family: 'Pacifico';
+	text-align: center;
+	margin: 0 auto;
+	z-index: 9999;
+	width: 30%;
+}
+.logo .shadow{
+	border-bottom: 2.5px solid var(--logo-shadow);
+	margin: 17.5% auto;
+	width: 20%;
+}
+
+.cover .address-name,
+.cover .message{
+		/*extend*/
+	font-family: 'Ubuntu';
+	text-align: justify;
+	color: var(--grey);
+	font-size: 16.5px;
+}
+	
+.cover .file{
+		margin: 7.5% 0;
+}
+.file .btn-green{
+	background-color: var(--flat-green);
+	text-decoration: none;
+	border-radius: 2.5px;
+	font-weight: bold;
+	font-size: 17px;
+	padding: 1.5% 2%;
+	color: #fff;
+}
+.file .btn-green:hover{
+	background-color: var(--hover-green);
+}
+.file p{
+	font-family: 'Ubuntu';
+	color: var(--grey);
+	font-size: 16.5px;
+	margin-top: 5%;
+}
+
+	.cover .closing p{
+			font-family: 'Ubuntu';
+			color: var(--grey);
+			font-size: 16.5px;
+	}
+
+	.cover .signature{
+		margin-top: 10%;
+	}
+			.signature p{
+				font-family: 'Ubuntu';
+				color: var(--grey);
+				font-size: 16.5px;	
+			}
+			.signature .name::before{
+				content : "~";
+			}
+			.signature .name{
+				font-family: 'Pacifico';
+				font-size: 20px;
+				color: #202020;	
+				margin: 0;
+			}
+
+	.cover .terms{
+		margin: 15% 0;
+	}
+	.cover .terms .row-terms{
+		margin: 5% 0;
+		display: flex;
+	}	
+		.terms .terms-header{
+			text-align: center;
+		}
+				.row-terms .icon{
+					border: 5px solid var(--icon);
+					justify-content: center;
+					align-items: center;
+					border-radius: 50%;
+					display: flex;
+					height: 75px;
+					width: 75px;
+					padding: 5%;
+				}
+				.row-terms .icon .fa{
+					font-size: 2.5em;
+				}
+				.row-terms .descriptions{
+					font-family: 'Ubuntu';
+					align-items: center;
+					color: var(--grey);
+					max-height: 100px; 
+					font-size: 16.5px;
+					margin-left: 2.5%;
+					display: flex;
+				}
+				.row-terms .descriptions p .title::after{
+					content: " - ";
+				}
+				.row-terms .descriptions p{
+					display: inline;
+					margin: 0;
+				}
+			.terms .row-terms.push-one .icon{
+				visibility: hidden;
+			}
