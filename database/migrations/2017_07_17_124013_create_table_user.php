@@ -13,12 +13,15 @@ class CreateTableUser extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_user',100);
-            $table->string('password',20);
+            $table->string('username',100);
+            $table->string('password',255);
+            $table->string('remember_token',100)->default('NULL');
             $table->text('alamat');
             $table->timestamps();
+            $table->string('status',255)->default('off');
+            $table->string('verification_code',255);
         });
     }
 
