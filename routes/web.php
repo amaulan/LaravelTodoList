@@ -25,6 +25,7 @@ Route::get('/latihan', 'TodoController@latihan');
 Route::get('/latihan2', 'TodoController@latihan2');
 Route::get('/email', 'TodoController@email');
 Route::post('/send', 'TodoController@send');
+Route::get('/update_status', 'TodoController@update_status');
 
 
 

@@ -19,6 +19,14 @@
 			    <div class="alert alert-danger">
 			        {{ Session::get('notlogin') }}<!-- Mengambil nilai Session dengan variable 'notlogin' -->
 			    </div>
+			@elseif (session()->has('verified'))<!-- Percabangan menampilkan notifikasi jika gagal login -->
+			    <div class="alert alert-success">
+			        {{ Session::get('verified') }}<!-- Mengambil nilai Session dengan variable 'verified' -->
+			    </div>
+			@elseif (session()->has('notverified'))<!-- Percabangan menampilkan notifikasi jika gagal login -->
+			    <div class="alert alert-danger">
+			        {{ Session::get('notverified') }}<!-- Mengambil nilai Session dengan variable 'notverified' -->
+			    </div>
 			@endif<!-- Menutup percabangan -->
 			@if ($errors->any())<!-- Percabngan jika ada inputan yang salah -->
 			    <div class="alert alert-danger">

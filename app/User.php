@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','alamat','remember_token'//->Mendeklarasikan field table default(user)
+        'username', 'email', 'password','alamat','remember_token','status','verification_code',//->Mendeklarasikan field table default(user)
     ];
 
     /**

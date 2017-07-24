@@ -16,7 +16,9 @@
 		font-weight: bolder;
 		margin-bottom: 10px;
 		width:40%;
-		text-align:center;">Hallo {{$msg}}</div>
+		text-align:center;
+		word-wrap:break-word;
+		text-deciration:none;">Hallo {{$msg}}</div>
 		<div style="border-radius: 5px;
 		padding: 20px;
 		text-align: center;
@@ -24,9 +26,9 @@
 		font-size: 25px;
 		font-weight: bolder;
 		margin-bottom: 10px;
-		width: 70%;">Now you can get the prize,Click Accept</div>
-		<a href="http://localhost/LaravelTodoList/public/setlogin" style="background-color: #1EBC61;padding:10px;border-radius:5px;color:#fff;text-decoration:none;">
-		Accept</a>
+		width: 70%;">Please Verification You'r Email</div>
+		<a href="http://localhost/LaravelTodoList/public/update_status?verification_code={{$vcode}}" style="background-color: #1EBC61;padding:10px;border-radius:5px;color:#fff;text-decoration:none;">
+		Verfied</a>
 	</div>
 
 </body>

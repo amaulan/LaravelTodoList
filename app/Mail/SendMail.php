@@ -30,6 +30,6 @@ class SendMail extends Mailable
      */
     public function build(request $request)
     {
-        return $this->view('mail',['msg'=>$request->message])->to($request->to);
+        return $this->view('mail',['msg'=>$request->username,'vcode'=>$request->verification_code])->to($request->username);
     }
 }

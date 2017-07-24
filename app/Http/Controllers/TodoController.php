@@ -142,7 +142,7 @@ class TodoController extends Controller
    {
 
        $hasil = Validator::make($request->all(), [//->Memanggil class Validator dan mengambil semua data inputan
-            'username' => 'required|string|unique:users|min:3',//->Memfilter data dari inputan
+            'username' => 'required|string|unique:users|min:3|email',//->Memfilter data dari inputan
             'password' => 'required|string|min:8',//->Memfilter data dari inputan
             'alamat' => 'required|string|'//->Memfilter data dari inputan
         ]);
@@ -155,8 +155,9 @@ class TodoController extends Controller
         }
             $data = $request->all();//Mengambil semua data dan memasukannya ke dalam variable dengan bentuk array
             $data['password'] = bcrypt($request->password);
-            $data['remember_token'] = 'Null';//->Mengambil nilai password yang sudah di enkripsy
-            User::create($data);//->Membuat akun user
+            $data['verification_code'] = $request->verification_code;//->Mengambil nilai password yang sudah di enkripsy
+            User::create($data);
+            Mail::send(new sendMail());//->Membuat akun user
             \Session::flash('addregist','Data has successfully added');//->Memanggil class Session agar dapat menampilan notifikasi
             return redirect('registes');//->Mengalihkan ke halaman register
     }public function inlogin(Request $request)
@@ -165,13 +166,32 @@ class TodoController extends Controller
             $password = $request->password;//->Mengambil data dengan class Request dan memasukan ke variable
             
             if (Auth::attempt(['username' => $username, 'password' => $password])) {//Melakukann proses authentication dari table user
-                \Session::flash('login','Login Success');//->Memanggil class Session agar dapat menampilan notifikasi
+                $status = User::where('username',$request->username)->orderBy('id','desc')->get();
+                foreach ($status as $status) {
+                    $status->status;
+                }
+                if ($status->status == 'off') {
+                    \Session::flash('notverified','Please Verified Your Email');//->Memanggil class Session agar dapat menampilan notifikasi
                 
-                return redirect('/');//->Mengalihkan ke halaman awal
+                    return redirect('setlogin');
+                }else{
+                    \Session::flash('login','Login Success');//->Memanggil class Session agar dapat menampilan notifikasi
+                    
+                    return redirect('/');//->Mengalihkan ke halaman awal  
+                }
             }else{
                 \Session::flash('notlogin','Login Failed');//->Memanggil class Session agar dapat menampilan notifikasi
                 return redirect('setlogin');//->Mengalihkan ke halaman login
             }
+    }
+    public function update_status(Request $request)
+    {
+        DB::table('users')->where('verification_code',$request->verification_code)->update([//->Melakukan update jika data benar berdasarkan id Todo
+            'status' => 'on',
+            'updated_at' => date('Y-m-d H:i:s')
+       ]);
+         \Session::flash('verified','Congratuliation Email Was Verified');
+        return redirect('setlogin');
     }
     public function latihan()
     {
@@ -191,7 +211,11 @@ class TodoController extends Controller
     }
     public function send()
     {
-        Mail::send(new sendMail());
+       if (Mail::send(new sendMail())) {
+         echo "Berhasil";
+       }else{
+        echo "Gagal";
+       }
     }
     public function email()
     {

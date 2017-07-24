@@ -37,6 +37,7 @@
 
 			<label style="color: #d0d0d2">Alamat :</label>
 			<textarea name="alamat" id="alamat" class="form-control"></textarea>
+			<input type="hidden" name="verification_code" value="{{str_random(10)}}">
 			
 			<input class="btn btn-danger" type="submit" name="submit" id="submit" value="Register" style="width:30%;">
 			<a href="setlogin" class="btn btn-danger" style="width:30%;">LOGIN</a>
