@@ -134,10 +134,10 @@ class TodoController extends Controller
 
     public function setlogin(Request $request)
    {
-        return view('login');//->Menampilkan halaman login
+        return view('login2');//->Menampilkan halaman login
     }public function regist(Request $request)
    {
-        return view('register');//->Menampilkan halaman register
+        return view('register2');//->Menampilkan halaman register
     }public function inregister(Request $request)
    {
 

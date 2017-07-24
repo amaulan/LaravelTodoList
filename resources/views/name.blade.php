@@ -21,10 +21,10 @@
 				To Do<input type="text" name="todo" class="form-control">
 				<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 				<input type="submit" name="save" value="SAVE" class="form-control btn btn-danger">
-				<input type="reset" name="reset" value="RESET" class="form-control btn btn-info ">
+				<input type="reset" name="reset" value="RESET" class="form-control btn btn-custom " style="color:red; background-color: #ececec">
 			</form>
 			<form action="logout" method="GET" class="col-md-4 col-md-offset-4">
-				<input type="submit" name="logout" class="btn btn-success form-control" value="LOG-OUT">
+				<input type="submit" name="logout" class="btn btn-info form-control" value="LOG-OUT">
 			</form>
 			<div class="col-md-4">
 				

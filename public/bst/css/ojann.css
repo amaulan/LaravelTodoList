@@ -1,0 +1,44 @@
+body{
+	background-color: #ececec;
+}
+.navbar{
+	background-color: gray;
+}
+.container{
+	margin-top: 100px;
+}
+.icon{
+	color: #2980b9;
+	font-size: 30px;
+
+}
+.form-control{
+	color: #141422;
+
+}
+.btn-custom { 
+  color: white; 
+  background-color: #2980b9;
+  margin-top:0px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+.btn-custom:hover { 
+  color: #2980b9; 
+  background-color: white; 
+}
+.fa{
+	color: #2980b9;
+	padding-left: 20px;
+}
+	.fa:hover{
+	color: black;
+	padding-left: 20px;
+}
+}
+div>a{
+	color: #000000;
+}
+div>a:hover{
+	color:#eee;
+}
