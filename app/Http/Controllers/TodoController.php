@@ -22,10 +22,7 @@ class TodoController extends Controller
      */
     public function index()//->Memunculkan Tampilan Awal
     {
-        
-            $todo = Todo::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();//->Memunculkan data yang sesuai dengan id user dari terbesar 
-            $row = $todo->count();//->Menghitung baris dari Variable $todo yang di masukan dalam variable $row
-            return view('name', compact('todo','row'));//->Menampilkan halaman name.blade.php dengan membawa variable di dalam compact
+        return view('login2');//->Menampilkan halaman login
     }
 
     /**
@@ -60,7 +57,7 @@ class TodoController extends Controller
 
             Todo::create($request->all());//->Menyimpan data ke Model Todo jika data Valid
             \Session::flash('add','Data has successfully added');//->Memanggil class Session agar dapat menampilan notifikasi
-            return redirect('/');//->Mengalihkan ke halaman awal
+            return redirect('setlogin');//->Mengalihkan ke halaman awal
     }
 
     /**
@@ -99,7 +96,7 @@ class TodoController extends Controller
        $todo = $request->todo;//->Mengambil data dengan class Request dan memasukan ke variable
        if ($todo == "") {//->percabangan jika inputan kosong atau belum diisi
            \Session::flash('notupdate','Data has not successfully updated.');//->Memanggil class Session agar dapat menampilan notifikasi
-         return redirect('/');//->Mengalihkan ke halaman awal
+         return redirect('setlogin');//->Mengalihkan ke halaman awal
        }else{
         DB::table('todo')->where('id',$id)->update([//->Melakukan update jika data benar berdasarkan id Todo
             'todo' => $todo,
@@ -108,7 +105,7 @@ class TodoController extends Controller
        ]);
         // DB::update("UPDATE todo set todo='$todo',created_at='$created',updated_at=date('yyyy-mm') where id = $id");
         \Session::flash('update','Data successfully updated.');//->Memanggil class Session agar dapat menampilan notifikasi
-         return redirect('/');//->Mengalihkan ke halaman awal
+         return redirect('setlogin');//->Mengalihkan ke halaman awal
        }
     }
 
@@ -123,18 +120,20 @@ class TodoController extends Controller
         $nomor = $request->id;//->Mengambil data dengan class Request dan memasukan ke variable
         Todo::destroy($nomor);//->Menghapus data berdasarkan id Todo
         \Session::flash('destroy','Data successfully deleted.');//->Memanggil class Session agar dapat menampilan notifikasi
-        return redirect('/');//->Mengalihkan ke halaman awal
+        return redirect('setlogin');//->Mengalihkan ke halaman awal
     }
     public function logout(Request $request)
     {
        Auth::logout();//->Melakukan proses logout dan menghapus semua Session Auth
        \Session::flush();
-       return redirect('setlogin');//->Mengalihkan ke halaman login
+       return redirect('/');//->Mengalihkan ke halaman login
     }
 
     public function setlogin(Request $request)
    {
-        return view('login2');//->Menampilkan halaman login
+        $todo = Todo::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();//->Memunculkan data yang sesuai dengan id user dari terbesar 
+            $row = $todo->count();//->Menghitung baris dari Variable $todo yang di masukan dalam variable $row
+            return view('name', compact('todo','row'));//->Menampilkan halaman name.blade.php dengan membawa variable di dalam compact
     }public function regist(Request $request)
    {
         return view('register2');//->Menampilkan halaman register
@@ -173,15 +172,15 @@ class TodoController extends Controller
                 if ($status->status == 'off') {
                     \Session::flash('notverified','Please Verified Your Email');//->Memanggil class Session agar dapat menampilan notifikasi
                 
-                    return redirect('setlogin');
+                    return redirect('/');
                 }else{
                     \Session::flash('login','Login Success');//->Memanggil class Session agar dapat menampilan notifikasi
                     
-                    return redirect('/');//->Mengalihkan ke halaman awal  
+                    return redirect('setlogin');//->Mengalihkan ke halaman awal  
                 }
             }else{
                 \Session::flash('notlogin','Login Failed');//->Memanggil class Session agar dapat menampilan notifikasi
-                return redirect('setlogin');//->Mengalihkan ke halaman login
+                return redirect('/');//->Mengalihkan ke halaman login
             }
     }
     public function update_status(Request $request)
@@ -191,7 +190,7 @@ class TodoController extends Controller
             'updated_at' => date('Y-m-d H:i:s')
        ]);
          \Session::flash('verified','Congratuliation Email Was Verified');
-        return redirect('setlogin');
+        return redirect('/');
     }
     public function latihan()
     {
