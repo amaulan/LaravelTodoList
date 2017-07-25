@@ -61,8 +61,8 @@
             <form action="inlogin" method="POST">
             {{ csrf_field() }} 
                 <div class="form-group">
-                    <label for="">Username</label>
-                    <input id="username" name="username" placeholder="username" type="text" class="form-control">
+                    <label for="">Email</label>
+                    <input id="email" name="email" placeholder="Email" type="email" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>

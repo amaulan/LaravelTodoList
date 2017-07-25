@@ -52,8 +52,8 @@
             <form action="inregister" method="POST">
                 {{ csrf_field() }}<!-- //->Membuat Method POST bisa melalui router -->
                 <div class="form-group">
-                    <label for="">Username</label>
-                    <input id="username" name="username" placeholder="username" type="text" class="form-control">
+                    <label for="">Email</label>
+                    <input id="email" name="email" placeholder="email" type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
@@ -64,7 +64,6 @@
                     <textarea name="alamat" class="form-control"></textarea>  
                 </div>
               <div class="text-right">
-              <input type="hidden" name="verification_code" value="{{str_random(10)}}">
               <input class="btn btn-custom" type="submit" name="submit" id="submit" value="Register" style="width:30%;">
               </div>
                     

@@ -16,19 +16,19 @@
 			<form action="store" method="POST" style="text-align:center;margin-top:50px;margin-bottom:50px;">
 			{{ csrf_field() }}<!-- //->Membuat Method POST bisa melalui router -->
 			<div class="col-md-12" align="center" style="font-size:20px;">
-				Welcome <span style="font-weight:bolder;">{{Auth::user()->username}}<!-- Menampilkan Username dengan class Auth --></span>
+				Welcome <span style="font-weight:bolder;">{{Auth::user()->email}}<!-- Menampilkan Username dengan class Auth --></span>
 			</div>
 				To Do<input type="text" name="todo" class="form-control">
 				<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 				<input type="submit" name="save" value="SAVE" class="form-control btn btn-danger">
 				<input type="reset" name="reset" value="RESET" class="form-control btn btn-custom " style="color:red; background-color: #ececec">
 			</form>
-			<form action="logout" method="GET" class="col-md-4 col-md-offset-4">
+			<form action="logout" method="GET" class="col-md-12">
 				<input type="submit" name="logout" class="btn btn-info form-control" value="LOG-OUT">
 			</form>
-			<div class="col-md-4">
+		</div>
+		<div class="col-md-4 col-md-offset-4">
 				
-			</div>
 			@if (session()->has('add'))<!-- Percabangan menampilkan notifikasi jika berhasil tambah data -->
 			    <div class="alert alert-success col-md-12">
 			        {{ Session::get('add') }}<!-- Mengambil nilai Session dengan variable 'add' -->
@@ -54,9 +54,9 @@
 			        {{ Session::get('login') }}<!-- Mengambil nilai Session dengan variable 'login' -->
 			    </div>
 			@endif
-
+		</div>
 			@if ($errors->any())<!-- Percabngan jika ada inputan yang salah -->
-			    <div class="alert alert-danger">
+			    <div class="alert alert-danger col-md-4 col-md-offset-4">
 			        <ul>
 			            @foreach ($errors->all() as $error)<!-- Menampilkan eror dengan perulangan -->
 			                <li>{{ $error }}</li><!-- Menampilkan bagian eror -->
@@ -64,7 +64,6 @@
 			        </ul>
 			    </div>
 			@endif
-		</div>
 		<div class="col-md-12" align="center">
 		@if($row == 0)<!-- Percabangan jika tidak ada baris -->
 		<div align="center" style="font-size:25px;">
@@ -73,19 +72,19 @@
 		@else
 			<table class="table table-hover">
 				<tr class="tebel">
-					<td>ID</td>
-					<td>To Do</td>
-					<td>Created</td>
-					<td>Updated</td>
-					<td>Action</td>
+					<td align="center">ID</td>
+					<td align="center">To Do</td>
+					<td align="center">Created</td>
+					<td align="center">Updated</td>
+					<td align="center">Action</td>
 				</tr>
 				@foreach($todo as $todo)<!-- Menampilkan data dengan perulangan -->
 				<tr>
-					<td>{{$todo->id}}</td>
-					<td>{{$todo->todo}}</td>
-					<td>{{$todo->created_at}}</td>
-					<td>{{$todo->updated_at}}</td>
-					<td>
+					<td align="center">{{$todo->id}}</td>
+					<td align="center">{{$todo->todo}}</td>
+					<td align="center">{{$todo->created_at}}</td>
+					<td align="center">{{$todo->updated_at}}</td>
+					<td align="center">
 						<form action="destroy" method="GET">
 
 							<input type="submit" name="delete" value="DELETE" class="btn btn-danger" onclick="return confirm('Are You Sure ? ')">
