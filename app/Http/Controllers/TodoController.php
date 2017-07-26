@@ -122,8 +122,8 @@ class TodoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $nomor = $request->id;//->Mengambil data dengan class Request dan memasukan ke variable
-        Todo::destroy($nomor);//->Menghapus data berdasarkan id Todo
+        //->Mengambil data dengan class Request dan memasukan ke variable
+        Todo::destroy($request->id);//->Menghapus data berdasarkan id Todo
         \Session::flash('destroy','Data successfully deleted.');//->Memanggil class Session agar dapat menampilan notifikasi
         return redirect('setlogin');//->Mengalihkan ke halaman awal
     }
@@ -195,10 +195,12 @@ class TodoController extends Controller
     }
     public function update_status(Request $request)
     {
-        DB::table('users')->where('verification_code',$request->verification_code)->update([//->Melakukan update jika data benar berdasarkan id Todo
-            'status' => 1,
-            'updated_at' => date('Y-m-d H:i:s')
-       ]);
+        User::where('verification_code',$request->verification_code)
+          ->update(['status' => 1,'updated_at' => date('Y-m-d H:i:s')]);
+       //  DB::table('users')->where('verification_code',$request->verification_code)->update([//->Melakukan update jika data benar berdasarkan id Todo
+       //      'status' => 1,
+       //      'updated_at' => date('Y-m-d H:i:s')
+       // ]);
          \Session::flash('verified','Congratuliation Email Was Verified');
         return redirect('/');
     }
