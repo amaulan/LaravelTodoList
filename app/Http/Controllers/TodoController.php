@@ -11,7 +11,7 @@ use Validator;//->Memanggil class Validator
 use App\User;//->Memanggil class User
 use Session;//->Memanggil class Session
 use Mail;
-use App\mail\sendMail;
+use App\Mail\SendMail;
 
 class TodoController extends Controller
 {

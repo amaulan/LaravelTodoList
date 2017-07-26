@@ -27,7 +27,7 @@
 		font-weight: bolder;
 		margin-bottom: 10px;
 		width: 70%;">Please Verification You'r Email</div>
-		<a href="http://localhost/LaravelTodoList/public/update_status?verification_code={{$vcode}}" style="background-color: #1EBC61;padding:10px;border-radius:5px;color:#fff;text-decoration:none;">
+		<a href="{{url('/update_status')}}?verification_code={{$vcode}}" style="background-color: #1EBC61;padding:10px;border-radius:5px;color:#fff;text-decoration:none;">
 		Verfied</a>
 	</div>
 
